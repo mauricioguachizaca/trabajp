@@ -3,7 +3,7 @@ const usuario = require("../models/Usuario")
 
 exports.getUsuarios= async (req,res) => {
     const datos = await usuario.find({})
-    res.json(datos)
+    res.json()
 
 }
 exports.postUsuarios= async(req,res)=> {
@@ -71,16 +71,17 @@ exports.deleteUsuarios= async(req,res)=>{
     }
 }
 exports.getidUsuarios= async(req,res)=>{
+    
     try {
         const nombreProducto =  req.params.nombre;
         const productos = await usuario.find({nombre: nombreProducto});
         if (productos.length === 0) {
             return res.status(404).json({
-                mensaje: "No hay ese producto"
+                mensaje: "No hay esa persona"
             });
         }
 
-        res.json(productos);
+        res.status(200).json(productos);
     } catch (error) {
         console.error(error);
         res.status(500).json({

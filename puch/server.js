@@ -4,10 +4,12 @@ const index = require ('./routes/index.router')
 const cors = require("cors")
 const app = express()
 app.use(express.json());
+
 app.use('/usuarios',index);
+
 const options = {
-  origin:['http://localhost:9000']
-}
+  origin:'*'}
+
 app.use(cors({
   origin: options,
   credentials:true
